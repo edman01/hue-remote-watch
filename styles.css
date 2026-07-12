@@ -1,65 +1,116 @@
 :root {
-    color-scheme: light dark;
-    --background: #0b0c0f;
-    --surface: #17191f;
-    --text: #f7f7f8;
-    --muted: #b8bac2;
-    --accent: #ffd43b;
-    --border: rgba(255, 255, 255, 0.12);
+    color-scheme: dark;
+    --background-top: #050606;
+    --background-bottom: #0f1211;
+    --surface: #262828;
+    --surface-strong: #303333;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.66);
+    --accent: #ffd657;
+    --positive: #61eb99;
+    --border: rgba(255, 255, 255, 0.11);
 }
 
 * {
     box-sizing: border-box;
 }
 
+html {
+    background: var(--background-bottom);
+}
+
 body {
+    min-height: 100vh;
     margin: 0;
-    background: radial-gradient(circle at top, #20232b 0, var(--background) 42rem);
+    background: linear-gradient(180deg, var(--background-top), var(--background-bottom));
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
     line-height: 1.55;
 }
 
 .page {
-    width: min(760px, calc(100% - 32px));
+    width: min(780px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 56px 0;
+    padding: 52px 0 44px;
 }
 
-header {
-    margin-bottom: 32px;
+.hero,
+.subpage-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.app-icon,
+.small-icon {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 22%;
+}
+
+.app-icon {
+    width: 96px;
+    height: 96px;
+}
+
+.small-icon {
+    width: 56px;
+    height: 56px;
 }
 
 .eyebrow {
     color: var(--accent);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
     text-transform: uppercase;
 }
 
 h1 {
-    margin: 8px 0 10px;
-    font-size: clamp(2rem, 7vw, 3.35rem);
-    line-height: 1.05;
+    max-width: 650px;
+    margin: 6px 0 10px;
+    font-size: 2.75rem;
+    line-height: 1.08;
+    letter-spacing: 0;
+}
+
+.subpage-header h1 {
+    font-size: 2.15rem;
 }
 
 h2 {
-    margin: 32px 0 10px;
-    font-size: 1.24rem;
+    margin: 0 0 12px;
+    font-size: 1.22rem;
+    letter-spacing: 0;
+}
+
+h2:not(:first-child) {
+    margin-top: 28px;
 }
 
 p {
     margin: 0 0 14px;
 }
 
-ul {
-    margin: 10px 0 0;
-    padding-left: 1.2rem;
+ul,
+ol {
+    margin: 8px 0 0;
+    padding-left: 1.35rem;
 }
 
 li {
-    margin: 7px 0;
+    margin: 8px 0;
+}
+
+.feature-list {
+    columns: 2;
+    column-gap: 34px;
+}
+
+.feature-list li {
+    break-inside: avoid;
 }
 
 a {
@@ -68,35 +119,41 @@ a {
     text-underline-offset: 0.18em;
 }
 
-.card {
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
-    border: 1px solid var(--border);
-    border-radius: 18px;
+.panel {
+    margin-top: 18px;
     padding: 22px;
+    background: rgba(38, 40, 40, 0.94);
+    border: 1px solid var(--border);
+    border-radius: 8px;
 }
 
-.card + .card {
-    margin-top: 18px;
+.panel.compact {
+    padding-bottom: 12px;
 }
 
 .nav {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 26px;
+    margin-top: 24px;
 }
 
 .nav a {
     display: inline-flex;
     align-items: center;
     min-height: 42px;
+    padding: 0 15px;
+    background: var(--surface-strong);
     border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0 16px;
-    background: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
     color: var(--text);
-    text-decoration: none;
     font-weight: 700;
+    text-decoration: none;
+}
+
+.nav a:focus-visible,
+.nav a:hover {
+    border-color: var(--accent);
 }
 
 .muted {
@@ -104,26 +161,45 @@ a {
 }
 
 footer {
-    margin-top: 42px;
+    margin-top: 36px;
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --background: #f6f7f9;
-        --surface: #ffffff;
-        --text: #101114;
-        --muted: #555b66;
-        --accent: #8a6500;
-        --border: rgba(0, 0, 0, 0.12);
+@media (max-width: 620px) {
+    .page {
+        padding-top: 30px;
     }
 
-    body {
-        background: radial-gradient(circle at top, #fff4bd 0, var(--background) 36rem);
+    .hero {
+        grid-template-columns: 72px minmax(0, 1fr);
+        align-items: start;
+        gap: 14px;
     }
 
-    .nav a {
-        background: rgba(255, 255, 255, 0.74);
+    .app-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    h1 {
+        font-size: 2.15rem;
+    }
+
+    .hero h1 {
+        margin-top: 4px;
+    }
+
+    .hero .muted,
+    .hero .nav {
+        grid-column: 1 / -1;
+    }
+
+    .feature-list {
+        columns: 1;
+    }
+
+    .panel {
+        padding: 18px;
     }
 }
