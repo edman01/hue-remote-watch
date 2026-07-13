@@ -177,7 +177,14 @@ footer {
         gap: 14px;
     }
 
-    .hero > div {
+    .subpage-header {
+        grid-template-columns: 48px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero > div,
+    .subpage-header > div {
         display: contents;
     }
 
@@ -186,7 +193,13 @@ footer {
         height: 64px;
     }
 
-    .hero .eyebrow {
+    .small-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .hero .eyebrow,
+    .subpage-header .eyebrow {
         grid-column: 2;
     }
 
@@ -199,8 +212,14 @@ footer {
         margin-top: 2px;
     }
 
+    .subpage-header h1 {
+        grid-column: 1 / -1;
+        margin-top: 2px;
+    }
+
     .hero .muted,
-    .hero .nav {
+    .hero .nav,
+    .subpage-header .muted {
         grid-column: 1 / -1;
     }
 
